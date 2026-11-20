@@ -1,0 +1,22 @@
+<script src="assets/js/main.min.js"></script>
+
+{% include analytics.html %}
+
+<script>
+  document.querySelectorAll('.pub-tabs').forEach(function (tabs) {
+    var buttons = tabs.querySelectorAll('.pub-tab');
+    function show(target) {
+      buttons.forEach(function (b) {
+        var on = b.getAttribute('data-target') === target;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on);
+        document.getElementById(b.getAttribute('data-target')).hidden = !on;
+      });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { show(b.getAttribute('data-target')); });
+    });
+    tabs.hidden = false;
+    show(buttons[0].getAttribute('data-target'));
+  });
+</script>
